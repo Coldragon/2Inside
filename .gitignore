@@ -1,0 +1,16 @@
+
+*.vcxproj
+
+*.filters
+
+*.user
+
+Debug/
+
+Release/
+
+\.idea/
+
+cmake-build-debug/
+
+camera_sdl2
