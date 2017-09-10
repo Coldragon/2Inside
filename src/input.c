@@ -4,6 +4,7 @@
 #include "hdr/camera.h"
 #include "hdr/projectile.h"
 #include "hdr/sound.h"
+#include "hdr/graphics.h"
 
 void input_return(INPUT *input, SDL_Window *window, CAMERA *camera)
 {
@@ -217,9 +218,37 @@ void attack_player(CORE *game)
 		{
 			SDL_Rect cursor_pos = { 0 }; cursor_pos.x = game->input.mousex; cursor_pos.y = game->input.mousey;
 			SDL_Rect cursor_pos_in_game = screen_to_position(cursor_pos, &game->camera);
-			create_projectile(game->projectilesystem, game->entitysystem->entity[0], cursor_pos_in_game.x, cursor_pos_in_game.y, 0);
+			create_projectile(game->projectilesystem, game->entitysystem->entity[0], cursor_pos_in_game.x, cursor_pos_in_game.y, 0, 0);
 			chunk_play(game->soundsystem, 0, 20);
+			game->nb_shot_shooted++;
 			attack.last = attack.actual;
 		}
 	}
+}
+
+void shield_player(CORE *game)
+{
+
+	if ((game->input.rightclic || game->input.key[SDL_SCANCODE_SPACE]) && game->entitysystem->entity[0].shield_time > 0)
+	{
+		game->entitysystem->entity[0].shield_time--;
+		afficher_sprite(game, game->texpack.shield, game->entitysystem->entity[0].x, game->entitysystem->entity[0].y, (int)game->entitysystem->entity[0].shield_time % 100);
+		game->entitysystem->entity[0].shield_active = 1;
+	}
+	else if (!(game->input.rightclic || game->input.key[SDL_SCANCODE_SPACE]))
+	{
+		game->entitysystem->entity[0].shield_time+=0.5;
+			if (game->entitysystem->entity[0].shield_time > game->entitysystem->entity[0].shield_time_max)
+				game->entitysystem->entity[0].shield_time = game->entitysystem->entity[0].shield_time_max;
+			game->entitysystem->entity[0].shield_active = 0;
+
+	}
+	else
+		game->entitysystem->entity[0].shield_active = 0;
+}
+
+void ur_dead(CORE *game)
+{
+	if (game->timer_life <= 0)
+		end_menu(game);
 }

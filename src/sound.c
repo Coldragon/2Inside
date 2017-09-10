@@ -16,6 +16,10 @@ void init_soundsystem(SOUNDSYSTEM *soundsystem)
 void music_load(SOUNDSYSTEM *soundsystem, char path[])
 {
 	soundsystem->music=Mix_LoadMUS(path);
+	if (!soundsystem->music)
+	{
+		printf("Mix_LoadMUS(): %s\n", Mix_GetError());
+	}
 }
 
 void music_control(SOUNDSYSTEM *soundsystem, int control)

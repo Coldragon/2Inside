@@ -72,7 +72,8 @@ void camera_move(CORE *game)
 	if (game->input.key[SDL_SCANCODE_S] || game->input.key[SDL_SCANCODE_DOWN] || (game->input.mousey >= game->camera.h - 5 && grabbed && !game->input.leftclic))
 		game->camera.y += game->camera.speed * game->time.delta; */
 
-	// Map collide
+	// Map collide 
+	/*
 	if (game->camera.x > 1600 - (game->camera.w / 2))
 		game->camera.x = 1600 - (game->camera.w / 2);
 	if (game->camera.x < -1600 + (game->camera.w / 2))
@@ -80,7 +81,7 @@ void camera_move(CORE *game)
 	if (game->camera.y > 1600 - (game->camera.h / 2))
 		game->camera.y = 1600 - (game->camera.h / 2);
 	if (game->camera.y < -1600 + (game->camera.h / 2))
-		game->camera.y = -1600 + (game->camera.h / 2);
+		game->camera.y = -1600 + (game->camera.h / 2); */
 
 	// Remove focus
 	if (game->input.key[SDL_SCANCODE_ESCAPE])

@@ -13,5 +13,11 @@ BoldTextTexture text_update(SDL_Renderer *render, TTF_Font *font, char* string, 
 void text_affichage(SDL_Renderer *render, BoldTextTexture* btt);
 void debug_text(CORE* game);
 void timer_text(CORE* game);
+void timer_bar(CORE* game);
+void text_score(CORE *game);
+void shield_text(CORE* game);
+void end_text(CORE* game);
+
+
 
 #endif

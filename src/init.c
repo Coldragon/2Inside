@@ -7,6 +7,9 @@
 #include "hdr/map.h"
 #include "hdr/entity.h"
 #include "hdr/sound.h"
+#include <time.h>
+#include <stdlib.h>
+#include "hdr/spawner.h"
 
 void open_sdl_shit()
 {
@@ -39,11 +42,13 @@ void camera_init(CAMERA *camera)
 
 void map_init(MAP *map)
 {
-	memset(map->sol, 0, sizeof(MAP));
+	memset(map->terminalspawner, 0, sizeof(MAP));
 }
 
 void core_init(CORE *game)
 {
+	srand((unsigned int)time(NULL));
+
 	game->timer_life = 120000; 
 
 	// Camera
@@ -51,7 +56,7 @@ void core_init(CORE *game)
 
 	// Window
 	game->zoom_level = 1; game->tcase = 32;
-	game->window = SDL_CreateWindow("Camera", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, game->camera.w, game->camera.h, SDL_RENDERER_PRESENTVSYNC | SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_BORDERLESS);
+	game->window = SDL_CreateWindow("2Inside GameJam Build", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, game->camera.w, game->camera.h, SDL_RENDERER_PRESENTVSYNC | SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_BORDERLESS);
 	game->render = SDL_CreateRenderer(game->window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
@@ -72,14 +77,20 @@ void core_init(CORE *game)
 
 	// Texture
 	game->texpack.tileset = TextureCreate(game->render, "res/img/tileset.png", 255, 0, 255, 255);
-	game->texpack.dot = TextureCreate(game->render, "res/img/dot.png", 255, 0, 255, 255);
 	game->texpack.gui = TextureCreate(game->render, "res/img/gui3.png", 255, 0, 255, 255);
 	game->texpack.gui2 = TextureCreate(game->render, "res/img/gui2.png", 255, 0, 255, 255);
+	game->texpack.gui5 = TextureCreate(game->render, "res/img/gui5.png", 255, 0, 255, 255);
 	game->texpack.cursor = TextureCreate(game->render, "res/img/cursor.png", 255, 0, 255, 255);
 	game->texpack.player = TextureCreate(game->render, "res/img/player.png", 255, 0, 255, 255);
 	game->texpack.guibutton = TextureCreate(game->render, "res/img/guibutton.png", 255, 0, 255, 255);
 	game->texpack.background = TextureCreate(game->render, "res/img/background.png", 255, 0, 255, 255);
 	game->texpack.projectileset = TextureCreate(game->render, "res/img/projectileset.png", 255, 0, 255, 255);
+	game->texpack.shield = TextureCreate(game->render, "res/img/shield.png", 255, 0, 255, 255);
+	game->texpack.start = TextureCreate(game->render, "res/img/start.png", 255, 0, 255, 255);
+	game->texpack.end = TextureCreate(game->render, "res/img/end.png", 255, 0, 255, 255);
+
+
+
 
 	// Font
 	game->font = TTF_OpenFont("res/ttf/8-bit pusab.ttf", 11);
@@ -97,16 +108,25 @@ void core_init(CORE *game)
 	memset(game->soundsystem, 0, sizeof(SOUNDSYSTEM));
 	
 	init_soundsystem(game->soundsystem);
+	
+	music_load(game->soundsystem, "res/snd/synthwave.ogg");
+	
 	game->soundsystem->music = Mix_LoadMUS("res/snd/synthwave.ogg");
-	if (!game->soundsystem->music) 
-	{
-		printf("Mix_LoadMUS(): %s\n", Mix_GetError());
-	}
-
-	music_control(game->soundsystem, 1);
+	
 	music_volume(game->soundsystem, 50);
 
-	chunk_load(game->soundsystem, "res/snd/laser.wav");
-	
-	create_entity(game, 0, 0, 200, "res/img/player.png");
+	chunk_load(game->soundsystem, "res/snd/laser.wav"); // 0
+	chunk_load(game->soundsystem, "res/snd/explosion.wav"); // 1
+	chunk_load(game->soundsystem, "res/snd/explosion2.wav"); // 2
+	chunk_load(game->soundsystem, "res/snd/hack_complete.wav"); // 3
+	chunk_load(game->soundsystem, "res/snd/hack_start.wav"); // 4
+	chunk_load(game->soundsystem, "res/snd/hack_failed.wav"); // 5
+
+
+
+
+	create_entity(game, 0, 0, 200, 0,"res/img/player.png");
+	spawn_terminal(game->map, game);
+	spawn_ennemies(game->map, game);
+
 }
