@@ -1,9 +1,12 @@
 ﻿#include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <string.h>
+#include "hdr/init.h"
 #include "hdr/input.h"
 #include "hdr/map.h"
 #include "hdr/entity.h"
+#include "hdr/sound.h"
 
 void open_sdl_shit()
 {
@@ -41,6 +44,8 @@ void map_init(MAP *map)
 
 void core_init(CORE *game)
 {
+	game->timer_life = 120000; 
+
 	// Camera
 	camera_init(&game->camera);
 
@@ -90,7 +95,18 @@ void core_init(CORE *game)
 	// Soundsystem
 	game->soundsystem = calloc(1, sizeof(SOUNDSYSTEM));
 	memset(game->soundsystem, 0, sizeof(SOUNDSYSTEM));
+	
+	init_soundsystem(game->soundsystem);
+	game->soundsystem->music = Mix_LoadMUS("res/snd/synthwave.ogg");
+	if (!game->soundsystem->music) 
+	{
+		printf("Mix_LoadMUS(): %s\n", Mix_GetError());
+	}
 
+	music_control(game->soundsystem, 1);
+	music_volume(game->soundsystem, 50);
+
+	chunk_load(game->soundsystem, "res/snd/laser.wav");
+	
 	create_entity(game, 0, 0, 200, "res/img/player.png");
-
 }

@@ -1,5 +1,6 @@
 ﻿#include "hdr/camera.h"
 #include "hdr/graphics.h"
+#include "hdr/projectile.h"
 
 void create_projectile(PROJECTILESYSTEM *projectilesystem, ENTITY origin, int x_dest, int y_dest, int texture_index)
 {

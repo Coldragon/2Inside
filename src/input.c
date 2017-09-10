@@ -1,7 +1,9 @@
+#include "hdr/input.h"
 #include "hdr/core.h"
 #include <string.h>
 #include "hdr/camera.h"
 #include "hdr/projectile.h"
+#include "hdr/sound.h"
 
 void input_return(INPUT *input, SDL_Window *window, CAMERA *camera)
 {
@@ -216,6 +218,7 @@ void attack_player(CORE *game)
 			SDL_Rect cursor_pos = { 0 }; cursor_pos.x = game->input.mousex; cursor_pos.y = game->input.mousey;
 			SDL_Rect cursor_pos_in_game = screen_to_position(cursor_pos, &game->camera);
 			create_projectile(game->projectilesystem, game->entitysystem->entity[0], cursor_pos_in_game.x, cursor_pos_in_game.y, 0);
+			chunk_play(game->soundsystem, 0, 20);
 			attack.last = attack.actual;
 		}
 	}

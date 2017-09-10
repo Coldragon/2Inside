@@ -12,5 +12,6 @@ typedef struct {
 BoldTextTexture text_update(SDL_Renderer *render, TTF_Font *font, char* string, int x, int y);
 void text_affichage(SDL_Renderer *render, BoldTextTexture* btt);
 void debug_text(CORE* game);
+void timer_text(CORE* game);
 
 #endif

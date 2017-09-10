@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include "hdr/graphics.h"
 #include "hdr/camera.h"
 #include "hdr/gui.h"
 #include "hdr/entity.h"

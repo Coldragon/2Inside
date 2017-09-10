@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include "hdr/gui.h"
 #include "hdr/texture.h"
 
 void gui_rectangle(SDL_Renderer *render, Texture *text, SDL_Rect rect)

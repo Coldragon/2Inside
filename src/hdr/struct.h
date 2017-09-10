@@ -30,7 +30,10 @@ typedef struct
 typedef struct
 {
 	Mix_Music *music;
-	Mix_Chunk *sound[10];
+	Mix_Chunk *sound[25];
+	int tofill;
+	int channel_to_use;
+	int max_channel;
 
 
 } SOUNDSYSTEM;
@@ -147,6 +150,7 @@ typedef struct
 	int fps;
 	float zoom_level;
 	int tcase;
+	long timer_life;
 	SDL_Window* window;
 	SDL_Renderer* render;
 	TTF_Font* font;

@@ -1,4 +1,5 @@
 #include <SDL2/SDL_ttf.h>
+#include "hdr/core.h"
 #include "hdr/struct.h"
 #include "hdr/input.h"
 #include "hdr/camera.h"
@@ -27,11 +28,12 @@ void graph_loop(CORE *game)
 	afficher_gui(game->render, game->texpack.dot, game->camera.w / 2 - (game->texpack.dot->w / 2), game->camera.h / 2 - (game->texpack.dot->h / 2)); // Center Dot
 
 																																					 //#ifdef _DEBUG
-	debug_text(game); // Top gui with debug test
-					  //#endif
+	debug_text(game); // Top gui with debug test  
+
 
 	SDL_Rect rect = { 0,game->camera.h - 50,200, 50 }; // Bot Rect
 	gui_rectangle(game->render, game->texpack.gui, rect); // Bot Gui
+	timer_text(game);
 	afficher_windows_interraction(game);
 	afficher_gui(game->render, game->texpack.cursor, game->input.mousex, game->input.mousey); // Mouse cursor
 	SDL_RenderPresent(game->render);

@@ -1,4 +1,5 @@
-﻿#include "hdr/struct.h"
+﻿#include "hdr/entity.h"
+#include "hdr/struct.h"
 #include "hdr/graphics.h"
 
 void create_entity(CORE *game, int x, int y, int speed, char* texturepath)

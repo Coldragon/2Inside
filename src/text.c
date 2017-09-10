@@ -47,11 +47,38 @@ void debug_text(CORE* game)
 		lasttime = SDL_GetTicks();
 		SDL_DestroyTexture(btt.outline);
 		SDL_DestroyTexture(btt.text);
-		sprintf(tempchar, "FPS: [%d] CAMERA-> Position : [%f, %f] Size : [%u, %u] Zoom : [%f] Input grabed : [%i]", game->fps, game->camera.x, game->camera.y, game->camera.w, game->camera.h, game->zoom_level, SDL_GetWindowGrab(game->window));
-		//sprintf(tempchar, "FPS: [%d] :: Terminal", game->fps);
+		//sprintf(tempchar, "FPS: [%d] CAMERA-> Position : [%f, %f] Size : [%u, %u] Zoom : [%f] Input grabed : [%i]", game->fps, game->camera.x, game->camera.y, game->camera.w, game->camera.h, game->zoom_level, SDL_GetWindowGrab(game->window));
+		sprintf(tempchar, "WaveHacking GameJam Build");
 		btt = text_update(game->render, game->font, tempchar, 11, 7);
 	}
 
 	text_affichage(game->render, &btt);
 
+}
+
+void timer_text(CORE* game)
+{
+	static long lasttime = 0;
+	static long lasttime2 = 0;
+	static char tempchar[30] = "0";
+	static BoldTextTexture btt = { 0 };
+
+
+	if (SDL_GetTicks() - lasttime > 50) 
+	{
+		if (SDL_GetTicks() - lasttime2 > 1000)
+		{
+			game->timer_life -= 1000;
+			lasttime2 = SDL_GetTicks();
+		}
+			
+		lasttime = SDL_GetTicks();
+		SDL_DestroyTexture(btt.outline);
+		SDL_DestroyTexture(btt.text);
+		sprintf(tempchar, "Timeleft : [%d]", game->timer_life/1000);
+		//sprintf(tempchar, "FPS: [%d] :: Terminal", game->fps);
+		btt = text_update(game->render, game->font, tempchar, 20, game->camera.h-34);
+	}
+
+	text_affichage(game->render, &btt);
 }
