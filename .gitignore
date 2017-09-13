@@ -14,3 +14,9 @@ Release/
 cmake-build-debug/
 
 camera_sdl2
+
+\.vscode/
+
+2inside
+
+build/

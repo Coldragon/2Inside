@@ -75,7 +75,7 @@ void timer_text(CORE* game)
 		lasttime = SDL_GetTicks();
 		SDL_DestroyTexture(btt.outline);
 		SDL_DestroyTexture(btt.text);
-		sprintf(tempchar, "Timeleft : [%d]", game->timer_life/1000);
+		sprintf(tempchar, "Timeleft : [%ld]", game->timer_life/1000);
 		//sprintf(tempchar, "FPS: [%d] :: Terminal", game->fps);
 		btt = text_update(game->render, game->font, tempchar, 20, game->camera.h-34);
 	}

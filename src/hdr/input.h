@@ -1,6 +1,6 @@
 #ifndef DEF_INPUT
 #define DEF_INPUT
-#include "hdr/struct.h"
+#include "struct.h"
 
 void input_return(INPUT *input, SDL_Window *window, CAMERA *camera);
 void input_init(INPUT *input);

@@ -9,7 +9,7 @@ void init_soundsystem(SOUNDSYSTEM *soundsystem)
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
 		printf("Mix_OpenAudio: %s\n", Mix_GetError());
 	Mix_AllocateChannels(16);
-	Mix_Init(MIX_INIT_MP3 || MIX_INIT_OGG);
+	Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
 
 }
 
