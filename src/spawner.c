@@ -17,7 +17,7 @@ void spawn_terminal(MAP *map, CORE *game)
 		create_entity(game, (rand_spawn.x*32)-1600+16, (rand_spawn.y * 32 )-1600+16, 0, 1,"res/img/terminal.png");
 		map->terminalspawner[rand_spawn.y][rand_spawn.x] = 0;
 	}
-	printf("Terminal spawned\n");
+	printf("	Spawn Terminal : OK\n");
 }
 
 void spawn_ennemies(MAP *map, CORE *game)
@@ -34,5 +34,5 @@ void spawn_ennemies(MAP *map, CORE *game)
 		map->enmspawner[rand_spawn.y][rand_spawn.x] = 0;
 
 	}
-	printf("Ennemies spawned\n");
+	printf("	Spawn Ennemies : OK\n");
 }

@@ -27,26 +27,33 @@ void time_init(TIME *time)
 {
 	memset(time, 0, sizeof(TIME));
 	time->fps = 120;	time->ticks = 1000 / time->fps;
+	printf("	Initialize Time : OK \n");
 }
 
 void state_init(STATE *state)
 {
 	state->game_continue = 1; state->game_restarter = 1;
+	printf("	Initialize State : OK \n");
+
 }
 
 void camera_init(CAMERA *camera)
 {
 	camera->h = 720; camera->w = 1280; camera->y = 0; camera->x = 0;
 	camera->speed = 200;
+	printf("	Initialize Camera : OK \n");
+
 }
 
 void map_init(MAP *map)
 {
 	memset(map->terminalspawner, 0, sizeof(MAP));
+	printf("	Initialize Map : OK \n");
 }
 
 void core_init(CORE *game)
 {
+	printf("--- Core Init \n\n");
 	srand((unsigned int)time(NULL));
 
 	game->timer_life = 120000; 
@@ -60,6 +67,7 @@ void core_init(CORE *game)
 	game->render = SDL_CreateRenderer(game->window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+	printf("	Initialize Window : OK \n");
 
 
 	// Input
@@ -88,20 +96,25 @@ void core_init(CORE *game)
 	game->texpack.shield = TextureCreate(game->render, "res/img/shield.png", 255, 0, 255, 255);
 	game->texpack.start = TextureCreate(game->render, "res/img/start.png", 255, 0, 255, 255);
 	game->texpack.end = TextureCreate(game->render, "res/img/end.png", 255, 0, 255, 255);
-
+	printf("	Initialize TextPack : OK \n");
 
 
 
 	// Font
 	game->font = TTF_OpenFont("res/ttf/8-bit pusab.ttf", 11);
+	printf("	Initialize Font : OK \n");
 
 	// Entity System
 	game->entitysystem = calloc(1, sizeof(ENTITYSYSTEM));
 	memset(game->entitysystem, 0, sizeof(ENTITYSYSTEM));
+	printf("	Initialize EntitySystem : OK \n");
+
 
 	// Projectilesystem
 	game->projectilesystem = calloc(1, sizeof(PROJECTILESYSTEM));
 	memset(game->projectilesystem, 0, sizeof(PROJECTILESYSTEM));
+	printf("	Initialize ProjectileSystem : OK \n");
+
 
 	// Soundsystem
 	game->soundsystem = calloc(1, sizeof(SOUNDSYSTEM));
@@ -122,11 +135,18 @@ void core_init(CORE *game)
 	chunk_load(game->soundsystem, "res/snd/hack_start.wav"); // 4
 	chunk_load(game->soundsystem, "res/snd/hack_failed.wav"); // 5
 
+	printf("	Initialize Sound : OK \n");
 
 
 
-	create_entity(game, 0, 0, 200, 0,"res/img/player.png");
+	printf("\n--- Core Init : OK \n\n");
+
+	printf("--- Entity Spawn \n\n");
+	create_entity(game, 0, 0, 200, 0, "res/img/player.png");
+	printf("	Spawn Player : OK \n");
 	spawn_terminal(game->map, game);
 	spawn_ennemies(game->map, game);
+	printf("\n--- Entity Spawn : OK \n\n");
+
 
 }

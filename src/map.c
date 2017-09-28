@@ -2,6 +2,7 @@
 #include "hdr/map.h"
 #include <stdio.h>
 #include "hdr/define.h"
+#include "hdr/gui.h"
 
 
 void file_go_to_char(FILE* fichier, int character)

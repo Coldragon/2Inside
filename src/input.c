@@ -1,6 +1,7 @@
 #include "hdr/input.h"
 #include "hdr/core.h"
 #include <string.h>
+#include <stdio.h>
 #include "hdr/camera.h"
 #include "hdr/projectile.h"
 #include "hdr/sound.h"
@@ -102,6 +103,7 @@ void input_init(INPUT *input)
 	int temp = input->focus;
 	memset(input, 0, sizeof(INPUT));
 	input->focus = temp;
+	printf("	Initialize Input : OK \n");
 }
 
 
