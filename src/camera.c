@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "hdr/core.h"
 #include "hdr/input.h"
 #include "hdr/camera.h"

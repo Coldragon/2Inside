@@ -1,4 +1,4 @@
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 #include "hdr/core.h"
 #include "hdr/struct.h"
 #include "hdr/input.h"

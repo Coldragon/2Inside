@@ -1,6 +1,6 @@
 #ifndef DEF_TEXT
 #define DEF_TEXT
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 
 typedef struct {
 	SDL_Texture* text;

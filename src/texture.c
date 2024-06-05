@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <SDL2/SDL_image.h>
+#include <SDL_image.h>
 #include "hdr/texture.h"
 
 Texture* TextureCreate(SDL_Renderer* renderer,  const char* spriteName, int r, int g, int b, int a)

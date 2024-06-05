@@ -8,6 +8,7 @@ Release/
 \.idea/
 
 cmake-build-debug/
+cmake-build-release/
 
 camera_sdl2
 
@@ -16,3 +17,5 @@ camera_sdl2
 2inside
 
 build/
+/dependencies/
+

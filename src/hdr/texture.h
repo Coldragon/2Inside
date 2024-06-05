@@ -1,6 +1,6 @@
 #ifndef DEF_TEXTURE
 #define DEF_TEXTURE
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 struct Texture
 {

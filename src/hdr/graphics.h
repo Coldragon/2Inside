@@ -1,6 +1,6 @@
 #ifndef DEF_GRAPHICS
 #define DEF_GRAPHICS
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "camera.h"
 
 void afficher_clear(SDL_Renderer* render, int r, int g, int b);

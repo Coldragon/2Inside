@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "hdr/gui.h"
 #include "hdr/texture.h"
 
