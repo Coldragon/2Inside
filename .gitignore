@@ -19,3 +19,7 @@ camera_sdl2
 build/
 /dependencies/
 
+cmake-build-debug-mingw/
+cmake-build-debug-visual-studio/
+cmake-build-release-mingw/
+cmake-build-release-visual-studio/
